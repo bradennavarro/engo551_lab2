@@ -1,0 +1,15 @@
+{% extends "login_layout.html" %}
+
+{% block body %}
+    <div class="login-container">
+        <h1>Create Account</h1>
+        <h3>{{ message }}</h3>
+        <form action="{{ url_for('register') }}" method="post" autocomplete="off">
+            <input type="text" id="newusername" name="newusername" placeholder="Enter Your Username" required>
+            <input type="text" id="newpassword" name="newpassword" placeholder="Enter Your Password" required>
+            <button>Register</button>
+        </form>
+
+        <h6>Already registered? <a href= "{{ url_for('index')}}" >Sign in</a></h6>
+    </div>
+{% endblock %}

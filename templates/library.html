@@ -1,0 +1,68 @@
+{% extends "library_layout.html" %}
+
+{% block body %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1">
+                {{ username }}
+            </span>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ url_for('library', user_id=user_id) }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index')}}">Log out</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+    </header>
+
+    <div class="main">
+        <h1>Welcome to the library!</h1>
+
+        <h2>Search for books</h2>
+    
+        <div class="search">
+            <form action="{{ url_for('library', user_id=user_id) }}" method="post" autocomplete="off">
+                <input type="text" id="isbn" name="isbn" placeholder="Search by ISBN">
+                <input type="text" id="title" name="title" placeholder="Search by title">
+                <input type="text" id="author" name="author" placeholder="Search by author">
+                <input type="text" id="year" name="year" placeholder="Search by publication year">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+
+    <table class="table">
+        <thead class = "thead-dark">
+            <tr>
+                <th scope="col">ISBN</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Publication Year</th>
+                <th scope="col">Reviews Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if searches %}
+                {% for search in searches %}
+                <tr>
+                    <td>{{ search.isbn }}</td>
+                    <td>{{ search.title }}</td>
+                    <td>{{ search.author }}</td>
+                    <td>{{ search.year }}</td>
+                    <td><a href= "{{ url_for('reviews',book_id=search.id, user_id=user_id) }}" >Reviews</a></td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5">Sorry, no books found.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+{% endblock %}

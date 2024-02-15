@@ -1,0 +1,12 @@
+{% extends "login_layout.html" %}
+
+{% block body %}
+    <form action="{{ url_for('search') }}" method="post">
+        <input type="text" id="username" name="username" placeholder="Enter Your Username" required>
+        <input type="text" id="password" name="password" placeholder="Enter Your Password" required>
+        <button>Login</button>
+    </form>
+    <form action="{{ url_for('newuser') }}" method="post">
+        <button>New User?</button>
+    </form>
+{% endblock %}
