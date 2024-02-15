@@ -1,10 +1,10 @@
-# Project 1
+# Project 2
 
 ENGO 551
 
 The following project is a flask application for a book review website.
 Users can create accounts and login to the website to search for books 
-and leave reviews.
+and leave reviews. Users can also access the API
 
 MAIN FILES:
 
